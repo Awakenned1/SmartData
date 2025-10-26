@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFormHandling();
     initializeSmoothScrolling();
     initializeAnimations();
+    initializeFileUpload();
 });
 
 // Navigation functionality
@@ -370,6 +371,96 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// File Upload Handling
+function initializeFileUpload() {
+    const fileInput = document.getElementById('projectFiles');
+    const fileList = document.getElementById('fileList');
+    let selectedFiles = [];
+
+    if (!fileInput) return;
+
+    fileInput.addEventListener('change', function(e) {
+        const files = Array.from(e.target.files);
+        
+        files.forEach(file => {
+            // Check file size (10MB limit)
+            if (file.size > 10 * 1024 * 1024) {
+                alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+                return;
+            }
+            
+            // Add file if not already in list
+            if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                selectedFiles.push(file);
+            }
+        });
+        
+        displayFiles();
+    });
+
+    function displayFiles() {
+        fileList.innerHTML = '';
+        
+        selectedFiles.forEach((file, index) => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            
+            const fileIcon = getFileIcon(file.name);
+            const fileSize = formatFileSize(file.size);
+            
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <i class="${fileIcon}"></i>
+                    <div class="file-details">
+                        <span class="file-name">${file.name}</span>
+                        <span class="file-size">${fileSize}</span>
+                    </div>
+                </div>
+                <button type="button" class="file-remove" data-index="${index}">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            fileList.appendChild(fileItem);
+        });
+        
+        // Add remove listeners
+        document.querySelectorAll('.file-remove').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.dataset.index);
+                selectedFiles.splice(index, 1);
+                displayFiles();
+            });
+        });
+    }
+
+    function getFileIcon(filename) {
+        const ext = filename.split('.').pop().toLowerCase();
+        const iconMap = {
+            'pdf': 'fas fa-file-pdf',
+            'doc': 'fas fa-file-word',
+            'docx': 'fas fa-file-word',
+            'xls': 'fas fa-file-excel',
+            'xlsx': 'fas fa-file-excel',
+            'ppt': 'fas fa-file-powerpoint',
+            'pptx': 'fas fa-file-powerpoint',
+            'jpg': 'fas fa-file-image',
+            'jpeg': 'fas fa-file-image',
+            'png': 'fas fa-file-image',
+            'zip': 'fas fa-file-archive'
+        };
+        return iconMap[ext] || 'fas fa-file';
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    }
+}
 
 // Export functions for global access
 window.closeModal = closeModal;

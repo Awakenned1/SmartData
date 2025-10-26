@@ -1,6 +1,21 @@
 # SmartData Traffic Solutions - Web Application
 
-A professional web application for SmartData Traffic Solutions, designed to capture client inquiries and generate business leads for traffic data services.
+**Smart Mobility. Smart Future.**
+
+A professional web application for SmartData Traffic Solutions, founded by Ntuthuko Dlungwana in Port Shepstone, South Africa. Designed to deliver fast, reliable, and accurate results through traffic data services and client inquiry management.
+
+## 🎨 Brand Identity
+
+### Colors
+- **Primary:** Navy Blue (#0A1F44)
+- **Secondary:** White (#FFFFFF)
+- **Accent:** Black (#000000)
+
+### Brand Elements
+- **Slogan:** Smart Mobility. Smart Future.
+- **Tagline:** Fast, Reliable, Accurate Results.
+- **Founder:** Ntuthuko Dlungwana
+- **Location:** Port Shepstone, South Africa
 
 ## 🚦 Features
 
@@ -40,7 +55,7 @@ A professional web application for SmartData Traffic Solutions, designed to capt
 - **CSS3** - Modern styling with Flexbox/Grid
 - **JavaScript (ES6+)** - Interactive functionality
 - **Font Awesome** - Professional icons
-- **Google Fonts** - Inter font family
+- **Google Fonts** - Poppins font family
 
 ### Key Features
 - **Mobile-First Responsive Design**
