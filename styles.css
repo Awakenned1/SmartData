@@ -480,7 +480,13 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    align-items: center;
+    align-items: start;
+}
+
+.about-visual {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
 }
 
 .about-image-container {
@@ -492,7 +498,7 @@ body {
 
 .about-main-img {
     width: 100%;
-    height: 600px;
+    height: 700px;
     object-fit: cover;
     display: block;
 }
@@ -534,6 +540,24 @@ body {
 .floating-text p {
     font-size: 0.875rem;
     color: var(--gray-600);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about-content .section-tag {
+    margin-bottom: 1rem;
+}
+
+.about-content .section-heading {
+    margin-bottom: 1.5rem;
+}
+
+.about-content .section-text {
+    margin-bottom: 2rem;
 }
 
 .team-leader-card {
@@ -2086,6 +2110,15 @@ body {
         gap: 2rem;
     }
 
+    .about-visual {
+        position: relative;
+        top: 0;
+    }
+
+    .about-main-img {
+        height: 400px;
+    }
+
     .section-heading {
         font-size: 2rem;
     }
@@ -2221,6 +2254,10 @@ body {
     }
 
     /* About Section */
+    .about-main-img {
+        height: 300px;
+    }
+
     .about-image-gallery {
         height: 300px;
     }
