@@ -175,6 +175,8 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
 }
 
 .mobile-toggle span {
@@ -182,7 +184,21 @@ body {
     height: 3px;
     background: var(--white);
     border-radius: 3px;
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.mobile-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Hero Banner */
@@ -2450,27 +2466,121 @@ body {
     }
 
     /* About Section */
+    .about-section {
+        padding: 60px 0;
+    }
+
+    .about-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .subsection-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .subsection-title::after {
+        width: 60px;
+    }
+
+    .mission-vision-cards {
+        margin-bottom: 3rem;
+    }
+
+    .mv-card {
+        padding: 2rem;
+    }
+
+    .mv-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+    }
+
+    .mv-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .mv-content p {
+        font-size: 0.9375rem;
+    }
+
     .values-grid-modern {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .value-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .value-icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    .value-icon-wrapper i {
+        font-size: 2rem;
     }
 
     .why-choose-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .why-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .why-number {
+        font-size: 2.5rem;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .why-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .why-icon i {
+        font-size: 1.75rem;
+    }
+
+    .founder-content-wrapper {
+        padding: 2rem;
     }
 
     .founder-img {
         height: 300px;
     }
 
+    .founder-name {
+        font-size: 1.75rem;
+    }
+
+    .founder-position {
+        font-size: 1rem;
+    }
+
+    .founder-description {
+        font-size: 0.9375rem;
+    }
+
     .founder-stats {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1.5rem;
+    }
+
+    .tagline-banner {
+        padding: 2rem 1.5rem;
         flex-direction: column;
         gap: 1rem;
     }
 
-    .tagline-banner {
-        padding: 2rem;
-        flex-direction: column;
-        gap: 1rem;
+    .tagline-banner i {
+        font-size: 1.5rem;
     }
 
     .tagline-banner p {
@@ -2571,6 +2681,10 @@ body {
         font-size: 1.5rem;
     }
 
+    .subsection-title {
+        font-size: 1.375rem;
+    }
+
     .btn-primary-large,
     .btn-secondary-large {
         padding: 0.875rem 1.5rem;
@@ -2583,12 +2697,105 @@ body {
         padding: 0.4rem 0.8rem;
     }
 
-    .team-leader-card {
-        padding: 1rem;
+    .mv-card {
+        padding: 1.5rem;
     }
 
-    .leader-details h3 {
-        font-size: 1.25rem;
+    .founder-content-wrapper {
+        padding: 1.5rem;
     }
+
+    .founder-name {
+        font-size: 1.5rem;
+    }
+
+    .tagline-banner {
+        padding: 1.5rem 1rem;
+    }
+
+    .tagline-banner p {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   MOBILE TOUCH OPTIMIZATIONS
+   ============================================ */
+
+/* Improve touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+    /* Ensure all interactive elements are at least 44x44px (Apple guideline) */
+    button,
+    a,
+    .nav-item,
+    .mobile-toggle,
+    .btn-primary-large,
+    .btn-secondary-large,
+    input[type="submit"],
+    .file-remove {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Larger tap targets for cards */
+    .mv-card,
+    .value-card,
+    .why-card,
+    .service-box,
+    .project-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(10, 31, 68, 0.1);
+    }
+
+    /* Remove hover effects on touch devices */
+    .mv-card:hover,
+    .value-card:hover,
+    .why-card:hover {
+        transform: none;
+    }
+
+    /* Add active states instead */
+    .mv-card:active,
+    .value-card:active,
+    .why-card:active {
+        transform: scale(0.98);
+    }
+
+    /* Better form inputs on mobile */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+}
+
+/* Prevent horizontal scroll */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Smooth scrolling for mobile */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Optimize images for mobile */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Better text rendering on mobile */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
